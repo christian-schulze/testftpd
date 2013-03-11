@@ -10,7 +10,7 @@ Update your Gemfile
 
 ```ruby
 group :test do
-  gem 'test_ftpd', git: 'git@github.com:christian-schulze/testftpd.git', require: false
+  gem 'testftpd', :git => 'git://github.com/christian-schulze/testftpd.git', :require => false
 end
 ```
 
