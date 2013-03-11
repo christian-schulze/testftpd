@@ -18,7 +18,7 @@ Write some specs...
 
 ```ruby
 require 'spec_helper'
-require 'test_ftpd'
+require 'testftpd'
 
 describe 'Test all the things!' do
   let(:port) { 212121 }
@@ -43,7 +43,7 @@ end
 
 ## Ackowledgements
 
-This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv][http://rubyforge.org/projects/dyn-ftp-serv/] created in late 2007.
+This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv](http://rubyforge.org/projects/dyn-ftp-serv/) created in late 2007.
 
 ## Contributers
 
