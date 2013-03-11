@@ -42,6 +42,12 @@ describe 'Test all the things!' do
 end
 ```
 
+## Todo
+
+* more tests
+* add simple authentication provider
+* implement more FTP commands
+
 ## Ackowledgements
 
 This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv](http://rubyforge.org/projects/dyn-ftp-serv/) created in late 2007.
@@ -49,3 +55,7 @@ This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv](http://ru
 ## Contributers
 
 * Christian Schulze
+
+## License
+
+Released under the MIT license. Please see the `LICENSE` file for more information.
