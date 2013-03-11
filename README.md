@@ -21,15 +21,15 @@ require 'spec_helper'
 require 'testftpd'
 
 describe 'Test all the things!' do
-  let(:port) { 212121 }
-  subject { TestFtpd::Server.new(port: port, root_dir: Rails.root) }
+  let(:port) { 21212 }
+  subject { TestFtpd::Server.new(port: port, root_dir: Rails.root.to_s) }
 
   before do
-    subject.start_and_wait
+    subject.start
   end
 
   after do
-    subject.shutdown_and_wait
+    subject.shutdown
   end
 
   it 'lists remote files' do
