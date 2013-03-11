@@ -10,7 +10,7 @@ Update your Gemfile
 
 ```ruby
 group :test do
-  gem 'test_ftpd', git: 'git@github.com:christian-schulze/test_ftpd.git', require: false
+  gem 'test_ftpd', git: 'git@github.com:christian-schulze/testftpd.git', require: false
 end
 ```
 
@@ -43,7 +43,7 @@ end
 
 ## Ackowledgements
 
-This code builds upon Rubtsov Vitaly' excellent project [*dyn-ftp-serv*][http://rubyforge.org/projects/dyn-ftp-serv/] created in late 2007.
+This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv][http://rubyforge.org/projects/dyn-ftp-serv/] created in late 2007.
 
 ## Contributers
 
