@@ -21,20 +21,21 @@ require 'spec_helper'
 require 'testftpd'
 
 describe 'Test all the things!' do
-  let(:port) { 21212 }
-  subject { TestFtpd::Server.new(port: port, root_dir: Rails.root.to_s) }
+  let(:ftp_port) { 21212 }
+  let(:ftp_root) { Rails.root.to_s }
 
   before do
-    subject.start
+    @ftp_server = TestFtpd::Server.new(port: ftp_port, root_dir: ftp_root)
+    @ftp_server.start
   end
 
   after do
-    subject.shutdown
+    @ftp_server.shutdown
   end
 
   it 'lists remote files' do
     ftp = Net::FTP.new
-    ftp.connect('127.0.0.1', port)
+    ftp.connect('127.0.0.1', ftp_port)
     ftp.login('username', 'password')
     ftp.list.any? { |file| file ~= /Gemfile/ }.should be_true
   end
