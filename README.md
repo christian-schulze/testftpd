@@ -2,7 +2,28 @@
 
 Simple FTP server written in pure Ruby.
 
-My primary use case is integration testing FTP client code in a Rails 3.1 codebase using RSpec 2.
+The primary use case is for integration testing FTP client code in a Rails 3.1 codebase using RSpec 2. 
+
+Enough FTP commands are implemented to be useful, including:
+* cdup
+* cwd
+* dele
+* list
+* mdtm
+* mkd
+* pass
+* pasv
+* port
+* pwd
+* rmd
+* quit
+* retr
+* size
+* stor
+* rnfr/rnto
+* syst - currently hard coded to 'UNIX'
+* type - does nothing
+* user
 
 ## Usage
 
@@ -51,6 +72,8 @@ end
 ## Ackowledgements
 
 This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv](http://rubyforge.org/projects/dyn-ftp-serv/) created in late 2007.
+
+Also [Francis Hwang](https://github.com/fhwang/fake_ftp) who originally adapted *dyn-ftp-serv*, and gave me a head start for this project.
 
 ## Contributers
 
