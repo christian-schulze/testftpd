@@ -69,7 +69,7 @@ end
 * add simple authentication provider
 * implement more FTP commands
 
-## Ackowledgements
+## Acknowledgements
 
 This code builds upon Rubtsov Vitaly' excellent project [dyn-ftp-serv](http://rubyforge.org/projects/dyn-ftp-serv/) created in late 2007.
 
