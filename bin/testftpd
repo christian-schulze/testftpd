@@ -20,8 +20,10 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-puts "Starting TestFTPd::Server with root directory '#{options[:root_dir]}' and port #{options[:port]}"
-TestFtpd::Server.new options
+puts 'Starting TestFTPd::Server...'
+puts "Root Directory: '#{options[:root_dir]}'"
+puts "      TCP Port: #{options[:port]}"
+TestFtpd::Server.new(options).start
 while true
   sleep 0.1
 end

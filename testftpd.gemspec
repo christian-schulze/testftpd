@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov',       '~> 0.7.1'
   s.add_development_dependency 'simplecov-rcov',  '~> 0.2.3'
 
-  s.files         = Dir.glob('{lib}/**/*')
+  s.files         = Dir.glob('{lib}/**/*') + Dir.glob('{bin}/*')
   s.test_files    = Dir.glob('{spec}/**/*')
+  s.executables   = ['testftpd']
   s.require_path  = 'lib'
 end
