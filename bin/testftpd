@@ -3,7 +3,7 @@
 require_relative '../lib/testftpd'
 require 'optparse'
 
-options = { :root_dir => '/', :port => 21 }
+options = { :root_dir => File.expand_path('.'), :port => 21 }
 OptionParser.new do |opts|
   opts.on(
     '-r', '--root-dir ROOT_DIR',
