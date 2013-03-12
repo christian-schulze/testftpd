@@ -6,15 +6,15 @@ require 'optparse'
 options = { :root_dir => File.expand_path('.'), :port => 21 }
 OptionParser.new do |opts|
   opts.on(
-    '-r', '--root-dir ROOT_DIR',
-    'Use ROOT_DIR as the root directory of the FTP server'
+    '-r', '--root <ROOT_DIR>',
+    'Serve files from <ROOT_DIR>, defaults to the current directory.'
   ) do |root_dir|
     options[:root_dir] = root_dir
   end
   
   opts.on(
-    '-p', '--port FTP_PORT',
-    'Use FTP_PORT as the port number of the FTP server'
+    '-p', '--port <FTP_PORT>',
+    'Listen for connections on <FTP_PORT>, defaults to 21.'
   ) do |ftp_port|
     options[:port] = ftp_port
   end
@@ -23,7 +23,15 @@ end.parse!
 puts 'Starting TestFTPd::Server...'
 puts "Root Directory: '#{options[:root_dir]}'"
 puts "      TCP Port: #{options[:port]}"
-TestFtpd::Server.new(options).start
+
+begin
+  TestFtpd::Server.new(options).start
+rescue Exception => e
+  puts 'There was a problem starting the FTP process...'
+  puts e.message
+  exit!(255)
+end
+
 while true
   sleep 0.1
 end
