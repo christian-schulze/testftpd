@@ -32,6 +32,8 @@ rescue Exception => e
   exit!(255)
 end
 
-while true
-  sleep 0.1
+begin
+  sleep 0.1 while true
+rescue Interrupt
+  puts 'Interrupted.'
 end
