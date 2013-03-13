@@ -262,7 +262,7 @@ class DynFTPServer
   def cmd_list(file_spec)
     data_connection do |data_socket|
       list = thread[:cwd].ftp_list(file_spec)
-      list.each {|file| data_socket.puts(((file.directory?) ? 'd': '-') + 'rw-rw-rw- 1 ftp ftp ' + file.ftp_size.to_s + ' ' + file.ftp_date.strftime('%b %d %H:%M') + ' ' + file.ftp_name + "\r\n") }
+      list.each {|file| data_socket.puts(file.class.format_list_entry(file)) }
     end
     thread[:data_socket].close if thread[:data_socket]
     thread[:data_socket] = nil

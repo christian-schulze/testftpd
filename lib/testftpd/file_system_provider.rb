@@ -76,6 +76,16 @@ module TestFtpd
       end
       true
     end
+
+    def self.format_list_entry(file_system_provider)
+      raw = (file_system_provider.directory?) ? 'd': '-'
+      raw += 'rw-rw-rw- 1 ftp ftp '
+      raw += file_system_provider.ftp_size.to_s + ' '
+      raw += file_system_provider.ftp_date.strftime('%b %d %H:%M') + ' '
+      raw += file_system_provider.ftp_name
+      raw += "\r\n"
+      raw
+    end
   end
 
 end
