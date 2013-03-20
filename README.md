@@ -1,5 +1,7 @@
 # TestFtpd
 
+[![Gem Version](https://badge.fury.io/rb/testftpd.png)](http://badge.fury.io/rb/testftpd)
+
 Simple FTP server written in pure Ruby.
 
 The primary use case is for integration testing FTP client code in a Rails 3.1 codebase using RSpec 2. 
