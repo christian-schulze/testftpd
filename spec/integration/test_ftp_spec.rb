@@ -17,7 +17,6 @@ describe TestFtpd do
 
   before do
     subject.start
-    copy_ftproot(ftp_root)
   end
 
   after do
@@ -27,6 +26,7 @@ describe TestFtpd do
 
   context 'before authenticating' do
     before :each do
+      copy_ftproot(ftp_root)
       @ftp = Net::FTP.new
       @ftp.connect('127.0.0.1', ftp_port)
     end
@@ -42,6 +42,7 @@ describe TestFtpd do
 
   context 'after authenticating' do
     before :each do
+      copy_ftproot(ftp_root)
       @ftp = Net::FTP.new
       @ftp.connect('127.0.0.1', ftp_port)
       @ftp.login('username', 'password')
