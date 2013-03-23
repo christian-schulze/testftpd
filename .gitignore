@@ -3,3 +3,6 @@
 .idea
 coverage/**
 *.gem
+
+.vagrant
+Vagrantfile
