@@ -11,4 +11,10 @@ task :test do
   Rake::Task['spec'].invoke
 end
 
+desc 'Run complete test suite and calculate coverage'
+task :test_cov do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['spec'].invoke
+end
+
 task :default => :test
