@@ -16,6 +16,6 @@ end
 SimpleCov.start do
   add_filter '/spec/'
   maximum_coverage_drop 1
-  minimum_coverage 95
+  minimum_coverage 85
   formatter SimpleCov::Formatter::MergedFormatter
 end
