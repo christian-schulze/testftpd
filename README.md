@@ -1,6 +1,6 @@
 # TestFtpd
 
-[![Gem Version](https://badge.fury.io/rb/testftpd.png)](http://badge.fury.io/rb/testftpd)
+[![Gem Version](https://badge.fury.io/rb/testftpd.png)](http://badge.fury.io/rb/testftpd) [![Build Status](https://travis-ci.org/christian-schulze/testftpd.png)](https://travis-ci.org/christian-schulze/testftpd)
 
 Simple FTP server written in pure Ruby.
 
