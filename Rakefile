@@ -8,7 +8,6 @@ end
 
 desc 'Run complete test suite'
 task :test do
-  ENV['COVERAGE'] = 'true'
   Rake::Task['spec'].invoke
 end
 
