@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Simple FTP server written in pure Ruby, allowing integration testing of FTP client code without mocks and stubs}
 
   s.required_rubygems_version = '>= 1.8.24'
-  s.required_ruby_version =     '~> 1.9.2'
+  s.required_ruby_version =     '>= 1.9.2'
 
   s.rubyforge_project = 'testftpd'
 
