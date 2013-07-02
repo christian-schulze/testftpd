@@ -57,7 +57,7 @@ describe 'Test all the things!' do
 end
 ```
 
-You can change the format the list commands returns by monkey-patching or stubbing. Heres a stubbing technique I've used:
+You can change the list command format by monkey-patching or stubbing. Heres a stubbing technique I've used:
 
 ```ruby
 require 'spec_helper'
