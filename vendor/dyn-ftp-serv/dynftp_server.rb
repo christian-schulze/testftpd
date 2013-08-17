@@ -88,6 +88,8 @@ class DynFTPServer
       sleep 0.01
     end
     threads.each {|t| t.join }
+  ensure
+    @server.close unless @server.closed?
   end
   
   private
