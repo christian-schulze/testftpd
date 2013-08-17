@@ -85,6 +85,7 @@ class DynFTPServer
         thread[:socket] = s
         client_loop
       end
+      sleep 0.01
     end
     threads.each {|t| t.join }
   end
