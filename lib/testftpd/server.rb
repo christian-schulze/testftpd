@@ -30,11 +30,12 @@ module TestFtpd
 
     def shutdown(timeout = 2)
       Timeout.timeout(timeout) do
+        if running?
+          @ftp_thread.kill
+          sleep 0.1 while running?
+          @ftp_thread = nil
+        end
         @server.close unless @server.closed?
-        return if @ftp_thread.nil?
-        @ftp_thread.kill
-        sleep 0.1 while running?
-        @ftp_thread = nil
       end
     rescue TimeoutError
       raise TimeoutError.new('TestFtpd::Server timeout before shutdown succeeded.')
