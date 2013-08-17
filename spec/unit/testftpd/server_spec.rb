@@ -23,7 +23,7 @@ describe TestFtpd::Server do
   describe '.start(timeout = 2)' do
     it 'raises exception if ftp process does not shutdown within timeout' do
       subject.start
-      expect { subject.shutdown(0.01) }.to raise_error(TimeoutError)
+      expect { subject.shutdown(0.001) }.to raise_error(TimeoutError)
     end
   end
 
