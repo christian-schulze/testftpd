@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = 'testftpd'
 
-  s.add_development_dependency 'rake',            '~> 10.0.3'
-  s.add_development_dependency 'rspec',           '~> 2.12'
+  s.add_development_dependency 'rake',            '>= 10.1.0'
+  s.add_development_dependency 'rspec',           '>= 2.14'
   s.add_development_dependency 'simplecov',       '~> 0.7.1'
   s.add_development_dependency 'simplecov-rcov',  '~> 0.2.3'
 
