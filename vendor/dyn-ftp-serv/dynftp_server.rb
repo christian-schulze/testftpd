@@ -65,14 +65,15 @@ class DynFTPServer
 
   def defaults
     {
-      host:           '',
-      port:           21,
-      masquerade_ip:  nil,
-      pasv_min_port:  1024,
-      pasv_max_port:  65535,
-      root:           nil,
-      authentication: ->(user, pass) { return true },
-      logger:         nil
+      host:                 '',
+      port:                 21,
+      masquerade_ip:        nil,
+      pasv_min_port:        1024,
+      pasv_max_port:        65535,
+      root:                 nil,
+      authentication:       ->(user, pass) { return true },
+      logger:               nil,
+      include_dot_folders:  false
     }
   end
 

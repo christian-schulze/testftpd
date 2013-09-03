@@ -9,7 +9,7 @@ module TestFtpd
 
   class Server < DynFTPServer
     def initialize(config = {})
-      config.merge!(:root => FileSystemProvider.new(config[:root_dir]))
+      config.merge!(:root => FileSystemProvider.new(config[:root_dir], self))
       @ftp_thread = nil
       super(config)
     end

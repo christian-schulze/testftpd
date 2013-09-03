@@ -1,10 +1,11 @@
 module TestFtpd
 
   class FileSystemProvider
-    attr_reader :path, :ftp_name, :ftp_size, :ftp_date
+    attr_reader :path, :server, :ftp_name, :ftp_size, :ftp_date
 
-    def initialize(path)
+    def initialize(path, server)
       @path = path
+      @server = server
       @ftp_name = path.split('/').last
       @ftp_name = '/' unless @ftp_name
       @ftp_dir = File.directory?(path)
@@ -23,7 +24,7 @@ module TestFtpd
       path_parts = path.split('/')
       return nil unless path_parts.pop
       return nil if path_parts.size <= 1
-      FileSystemProvider.new(path_parts.join('/'))
+      FileSystemProvider.new(path_parts.join('/'), server)
     end
 
     def ftp_list(filter = nil)
@@ -36,16 +37,16 @@ module TestFtpd
       else
         entries = Dir.entries(path)
       end
-      entries = entries.reject { |name| %w{. ..}.include?(File.basename(name)) }
+      entries = entries.reject { |name| %w{. ..}.include?(File.basename(name)) } unless server.config.fetch(:include_dot_folders, false)
       entries.map do |name|
-        FileSystemProvider.new(File.join(path, name))
+        FileSystemProvider.new(File.join(path, name), server)
       end
     end
 
     def ftp_create(name, dir = false)
-      return FileSystemProvider.new(path + '/' + name) unless dir
+      return FileSystemProvider.new(path + '/' + name, server) unless dir
       Dir.mkdir(path + '/' + name)
-      FileSystemProvider.new(path + '/' + name)
+      FileSystemProvider.new(path + '/' + name, server)
     rescue
       return false
     end
