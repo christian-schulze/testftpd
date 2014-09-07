@@ -12,7 +12,7 @@ module TestFtpd
       @ftp_size = File.size?(path)
       @ftp_size = 0 unless @ftp_size
       @ftp_date = Time.now
-      @ftp_date = File.mtime(path) if File.exists?(path)
+      @ftp_date = File.mtime(path) if File.exist?(path)
     end
 
     def directory?
@@ -60,7 +60,7 @@ module TestFtpd
         f.write input.read
       end
       @ftp_size = File.size?(path)
-      @ftp_date = File.mtime(path) if File.exists?(path)
+      @ftp_date = File.mtime(path) if File.exist?(path)
     end
 
     def ftp_rename(to_name)
@@ -84,6 +84,12 @@ module TestFtpd
       raw += file_system_provider.ftp_size.to_s + ' '
       raw += file_system_provider.ftp_date.strftime('%b %d %H:%M') + ' '
       raw += file_system_provider.ftp_name
+      raw += "\r\n"
+      raw
+    end
+
+    def self.format_nlst_entry(file_system_provider)
+      raw = file_system_provider.ftp_name
       raw += "\r\n"
       raw
     end

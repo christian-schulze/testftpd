@@ -56,19 +56,23 @@ describe TestFtpd do
       it 'can list remote files' do
         files = @ftp.list
         files.count.should eq(5)
-        files.any? { |file| file =~ /test_file/ }.should be_true
+        files.any? { |file| file =~ /^.*test_file$/ }.should be_true
+        files.any? { |file| file =~ /^d.*subfolder$/ }.should be_true
+        files.any? { |file| file =~ /^d.*subfolder_to_delete$/ }.should be_true
+        files.any? { |file| file =~ /^-.*test_file_to_delete$/ }.should be_true
+        files.any? { |file| file =~ /^-.*test_file_to_rename$/ }.should be_true
       end
 
       it 'can list a specific file' do
         files = @ftp.list('test_file')
         files.count.should eq(1)
-        files[0].should =~ /test_file/
+        files[0].should =~ /-.*test_file$/
       end
 
       it 'can list a specific file in a subfolder' do
         files = @ftp.list('subfolder/test_file1')
         files.count.should eq(1)
-        files[0].should =~ /test_file1/
+        files[0].should =~ /-.*test_file1/
       end
 
       it 'can list a sub folder' do
@@ -82,8 +86,36 @@ describe TestFtpd do
       @ftp.pwd.should eq('/')
     end
 
-    it 'can nlst remote files' do
-      pending 'nlst command not implemented yet'
+    context 'when nlst files' do
+      it 'can nlst remote files' do
+        files = @ftp.nlst
+        files.count.should eq(5)
+        files.any? { |file| file =~ /^test_file$/ }.should be_true
+        files.any? { |file| file =~ /^subfolder$/ }.should be_true
+        files.any? { |file| file =~ /^subfolder_to_delete$/ }.should be_true
+        files.any? { |file| file =~ /^test_file_to_delete$/ }.should be_true
+        files.any? { |file| file =~ /^test_file_to_rename$/ }.should be_true
+      end
+
+      it 'can nlst a specific file' do
+        files = @ftp.nlst('test_file')
+        files.count.should eq(1)
+        files[0].should =~ /^test_file$/
+      end
+
+      it 'can nlst a specific file in a subfolder' do
+        files = @ftp.nlst('subfolder/test_file1')
+        files.count.should eq(1)
+        files[0].should =~ /^test_file1$/
+      end
+
+      it 'can nlst a sub folder' do
+        files = @ftp.nlst('subfolder')
+        files.count.should eq(3)
+        files.any? { |file| file =~ /^test_file1$/ }.should be_true
+        files.any? { |file| file =~ /^test_file2$/ }.should be_true
+        files.any? { |file| file =~ /^subfolder$/ }.should be_true
+      end
     end
 
     it 'can query modified time of remote file' do

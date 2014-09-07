@@ -15,7 +15,7 @@ Enough FTP commands are implemented to be useful, including:
   </tr><tr>
     <td>list</td><td>retr</td><td>stor</td><td>dele</td><td>size</td><td>mdtm</td><td>rnfr/rnto</td>
   </tr><tr>
-    <td>pwd</td><td>cdup</td><td>cwd</td><td>mkd</td><td>rmd</td><td></td><td></td>
+    <td>pwd</td><td>cdup</td><td>cwd</td><td>mkd</td><td>rmd</td><td>nlst</td><td></td>
   </tr>
 </table>
 
