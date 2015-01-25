@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    testftpd (0.2.0)
+    testftpd (0.2.1)
 
 GEM
   remote: http://rubygems.org/

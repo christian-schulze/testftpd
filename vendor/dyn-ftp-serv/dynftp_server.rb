@@ -262,18 +262,11 @@ class DynFTPServer
 #    thread[:socket].puts " UTF8\r\n"
 #    thread[:socket].puts "211 end\r\n"
 #  end
-  
+
   def cmd_list(file_spec)
-    data_connection do |data_socket|
-      list = thread[:cwd].ftp_list(file_spec)
-      list.each {|file| data_socket.puts(file.class.format_list_entry(file)) }
-    end
-    thread[:data_socket].close if thread[:data_socket]
-    thread[:data_socket] = nil
-    
-    status(226, 'Transfer complete')
+    cmd_listing_impl(file_spec, 'format_list_entry')
   end
-  
+
   def cmd_mdtm(path)
     file = open_file(path)
     if file
@@ -298,7 +291,11 @@ class DynFTPServer
       status(550)
     end
   end
-  
+
+  def cmd_nlst(file_spec)
+    cmd_listing_impl(file_spec, 'format_nlst_entry')
+  end
+
   def cmd_pass(pass)
     thread[:pass] = pass
     if config[:authentication].call(thread[:user], thread[:pass])
@@ -465,7 +462,7 @@ class DynFTPServer
           self.send(message, params[1])
 	      else
           not_authorized
-	      end
+        end
       else
         not_implemented
       end
@@ -478,5 +475,17 @@ class DynFTPServer
     thread[:data_socket].close if thread[:data_socket] && !thread[:data_socket].closed?
     thread[:data_socket] = nil
   end
- 
+
+  private
+  def cmd_listing_impl(file_spec, formatter)
+    data_connection do |data_socket|
+      list = thread[:cwd].ftp_list(file_spec)
+      list.each {|file| data_socket.puts(file.class.send(formatter, file)) }
+    end
+    thread[:data_socket].close if thread[:data_socket]
+    thread[:data_socket] = nil
+
+    status(226, 'Transfer complete')
+  end
+
 end
