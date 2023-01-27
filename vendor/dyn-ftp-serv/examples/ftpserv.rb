@@ -44,7 +44,7 @@ class FSProvider
       f.write input.read
     end
     @ftp_size = File.size?(@path)
-    @ftp_date = File.mtime(@path) if File.exists?(@path)
+    @ftp_date = File.mtime(@path) if File.exist?(@path)
   end
   
   def ftp_delete()
@@ -59,7 +59,7 @@ class FSProvider
     @ftp_size = File.size?(path)
     @ftp_size = 0 unless @ftp_size
     @ftp_date = Time.now
-    @ftp_date = File.mtime(path) if File.exists?(path)
+    @ftp_date = File.mtime(path) if File.exist?(path)
   end
   
 end
