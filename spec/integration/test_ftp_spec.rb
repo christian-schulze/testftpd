@@ -134,7 +134,7 @@ describe TestFtpd do
         local_filepath = File.join(Dir.tmpdir, filename)
         @ftp.binary = true
         @ftp.get('test_file', local_filepath)
-        File.exists?(local_filepath).should be_true
+        File.exist?(local_filepath).should be_true
       end
 
       it 'can use text mode' do
@@ -142,7 +142,7 @@ describe TestFtpd do
         local_filepath = File.join(Dir.tmpdir, filename)
         @ftp.binary = false
         @ftp.get('test_file', local_filepath)
-        File.exists?(local_filepath).should be_true
+        File.exist?(local_filepath).should be_true
       end
 
       it 'can use passive mode' do
@@ -150,7 +150,7 @@ describe TestFtpd do
         local_filepath = File.join(Dir.tmpdir, filename)
         @ftp.passive = true
         @ftp.get('test_file', local_filepath)
-        File.exists?(local_filepath).should be_true
+        File.exist?(local_filepath).should be_true
       end
     end
 
@@ -174,29 +174,29 @@ describe TestFtpd do
 
     it 'can create a remote folder' do
       @ftp.mkdir('new_subfolder')
-      Dir.exists?(File.join(ftp_root, 'new_subfolder')).should be_true
+      Dir.exist?(File.join(ftp_root, 'new_subfolder')).should be_true
     end
 
     it 'can upload a file' do
       filename = 'test_file_to_upload'
       local_filepath = File.join(APP_PATH, 'spec/fixtures', filename)
       @ftp.put(local_filepath, filename)
-      File.exists?(File.join(ftp_root, filename)).should be_true
+      File.exist?(File.join(ftp_root, filename)).should be_true
     end
 
     it 'can delete a remote file' do
       @ftp.delete('test_file_to_delete')
-      File.exists?(File.join(ftp_root, 'test_file_to_delete')).should be_false
+      File.exist?(File.join(ftp_root, 'test_file_to_delete')).should be_false
     end
 
     it 'can rename a remote file' do
       @ftp.rename('test_file_to_rename', 'test_file_renamed')
-      File.exists?(File.join(ftp_root, 'test_file_renamed')).should be_true
+      File.exist?(File.join(ftp_root, 'test_file_renamed')).should be_true
     end
 
     it 'can delete a remote folder' do
       @ftp.rmdir('subfolder_to_delete')
-      File.exists?(File.join(ftp_root, 'subfolder_to_delete')).should be_false
+      File.exist?(File.join(ftp_root, 'subfolder_to_delete')).should be_false
     end
 
     it 'responds correctly to unrecognized commands' do
